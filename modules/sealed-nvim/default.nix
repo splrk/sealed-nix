@@ -1,20 +1,34 @@
-{ config, ... }:
+{ config, pkgs, lib, ... }:
 
 let
-	username = config.sealed.username
+	usersCfg = config.sealed.users;
 in
 {
-	config = {
-		home-manager.users."${username}".home = 
+	options.sealed.users = lib.mkOption {
+		type = lib.types.attrsOf (lib.types.submodule {
+			options.nvim.enable = lib.mkOption {
+				type = lib.types.bool;
+				default = true;
+				description = "Whether to enable sealed-nix neovim configuration for this user";
+			};
+		});
+	};
 
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-  };
+	config = let
+		homeManagerConfig = lib.mapAttrs (name: cfg: lib.mkIf cfg.nvim.enable {
+			xdg.configFile."nvim" = {
+				source = ./lua;
+				recursive = true;
+			};
 
-  home.file."./.config/nvim" = {
-    source = ./nvim;
-    recursive = true;
-  };
-
+			xdg.configFile."nvim/pack/startup/start/onedark-nvim".source = pkgs.fetchFromGitHub {
+				owner = "navarasu";
+				repo = "onedark.nvim";
+				rev = "v1.0.3";
+				sha256 = "sha256-h7p55pZpJBhIVeWyTOkrXHabvxTFILF83PW0lp4GDrs=";
+			};
+		}) usersCfg;
+	in {
+		home-manager.users = lib.mapAttrs (name: value: value) homeManagerConfig;
+	};
 }

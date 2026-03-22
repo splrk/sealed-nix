@@ -1,0 +1,255 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "Fira Code", monospace;
+    font-size: 12px;
+    min-height: 0;
+}
+
+/* Color Palette - OneDark Deep */
+@define-color bg0 #000000;          /* Terminal background */
+@define-color bg1 #0c0e15;          
+@define-color bg2 #151820;          
+@define-color bg3 #1f2329;          
+@define-color fg #a0a8b7;           /* Terminal foreground */
+@define-color red #e55561;          
+@define-color green #8ebd6b;        
+@define-color yellow #e2b86b;       
+@define-color blue #4fa6ed;         
+@define-color purple #bf68d9;       
+@define-color cyan #48b0bd;         
+@define-color orange #dd9046;
+@define-color prompt #4fa6ed;       /* Shell prompt color */
+
+@define-color sound @cyan;
+@define-color network @purple;
+@define-color battery @bg1;
+
+window#waybar {
+    background-color: @bg0;
+    color: @fg;
+}
+
+#custom-arrow1,
+#custom-arrow2,
+#custom-arrow3,
+#custom-arrow4,
+#custom-arrow5,
+#custom-arrow6,
+#custom-arrow7,
+#custom-arrow10,
+#custom-arrow11 {
+	font-size: 24px;
+	padding: 0;
+}
+
+
+
+#custom-arrow1 {
+	background-color: @bg0;
+	color: @cyan;
+}
+
+#custom-arrow2 {
+	background-color: @sound;
+	color: @network;
+}
+
+#custom-arrow3 {
+	background-color: @network;
+	color: @battery;
+}
+
+/* Workspaces styled like terminal tabs */
+#workspaces {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+}
+
+#workspaces button {
+    padding: 0 15px;
+    background-color: @bg1;
+    color: @fg;
+    border-right: 1px solid @bg3;
+}
+
+#workspaces button:hover {
+    background-color: @bg2;
+    color: @cyan;
+}
+
+#workspaces button.active {
+    background-color: @bg2;
+    color: @prompt;
+    border-bottom: 2px solid @prompt;
+}
+
+#workspaces button.urgent {
+    background-color: @bg2;
+    color: @red;
+    border-bottom: 2px solid @red;
+}
+
+/* Window title like terminal prompt */
+#window {
+    margin: 0;
+    padding: 0 15px;
+    background-color: transparent;
+    color: @fg;
+    font-weight: normal;
+}
+
+/* All modules styled like terminal output */
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#mpd {
+    padding: 0 12px;
+    background-color: transparent;
+    color: @bg1;
+}
+
+/* Terminal prompt style for left side */
+.modules-left {
+    background-color: @bg1;
+}
+
+.modules-center {
+    background-color: transparent;
+}
+
+.modules-right {
+    background-color: @bg1;
+}
+
+/* Terminal-style module colors */
+#clock {
+    color: @cyan;
+}
+
+#battery {
+		background-color: @battery;
+    color: @green;
+}
+
+#battery.charging, #battery.plugged {
+    color: @green;
+}
+
+#battery.critical:not(.charging) {
+    color: @red;
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        color: @bg0;
+        background-color: @red;
+    }
+}
+
+#cpu {
+    color: @blue;
+}
+
+#memory {
+    color: @yellow;
+}
+
+#temperature {
+    color: @orange;
+}
+
+#temperature.critical {
+    color: @red;
+    background-color: transparent;
+}
+
+#network {
+    background-color: @network;
+}
+
+#network.disconnected {
+    color: @red;
+    background-color: transparent;
+}
+
+#pulseaudio,
+#wireplumber {
+    background-color: @sound;
+}
+
+#pulseaudio.muted {
+    color: @red;
+    background-color: transparent;
+}
+
+#backlight {
+    color: @yellow;
+}
+
+#tray {
+    background-color: transparent;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+#idle_inhibitor {
+    color: @fg;
+}
+
+#idle_inhibitor.activated {
+    color: @green;
+}
+
+#mpd {
+    color: @purple;
+}
+
+#mpd.disconnected {
+    color: @red;
+}
+
+#mpd.stopped {
+    color: @fg;
+}
+
+#mpd.paused {
+    color: @yellow;
+}
+
+/* Custom modules */
+#custom-media {
+    color: @cyan;
+}
+
+/* Mode indicator (for sway/i3) */
+#mode {
+    background-color: @red;
+    color: @bg0;
+    font-weight: bold;
+    border: none;
+}

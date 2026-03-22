@@ -13,10 +13,18 @@
 #		};
 	};
 
-	outputs = inputs@{ nixpkgs, home-manager, ... }: {
+	outputs = inputs@{ nixpkgs, home-manager, ... }: 
+
+	let
+		customModule = moduleName: ({ pkgs, config, lib, ... }: import moduleName { inherit pkgs config lib home-manager; });
+		sealed = customModule ./modules/sealed/default.nix;
+		sealed-desktop = customModule ./modules/sealed-desktop/default.nix;
+		sealed-all = customModule ./modules/sealed-all/default.nix;
+	in
+	{
 
 		nixosModules = {
-			sealed = ./modules/sealed;
+			inherit sealed sealed-desktop sealed-all;
 		};
 
 		# nixosConfigurations = {

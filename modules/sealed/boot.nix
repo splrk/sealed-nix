@@ -2,10 +2,14 @@
 
 let
 	cfg = config.sealed;
-	isLinux = pkgs.stdenv.hostPlatform == "x86_64-linux";
+	isLinux = pkgs.stdenv.hostPlatform.system == "x86_64-linux";
 in
 {
-	options.sealed.slientBoot = lib.mkOption "Silent Boot" { default = false; };
+	options.sealed.silentBoot = lib.mkOption {
+		type = lib.types.bool;
+		description = "Silent Boot";
+		default = false;
+	};
 
 	config = lib.mkIf isLinux {
 		# Bootloader.
@@ -24,5 +28,6 @@ in
 		];
 
 		boot.consoleLogLevel = lib.mkIf cfg.silentBoot 3;
+		boot.kernelParams = lib.mkIf cfg.silentBoot [ "quiet" "udev.log_level=3" ];
 	};
 }

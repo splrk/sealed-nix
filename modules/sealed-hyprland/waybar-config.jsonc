@@ -1,0 +1,105 @@
+{
+  "battery": {
+    "bat": "BAT0",
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% 󰂄",
+    "format-full": "{capacity}% {icon}",
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "format-plugged": "{capacity}% ",
+    "interval": 30,
+    "states": {
+      "critical": 10,
+      "warning": 20
+    },
+    "tooltip-format": "{timeTo}, {capacity}%"
+  },
+  "clock": {
+    "format": "{:%H:%M:%S}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+		"interval": 1
+  },
+  "height": 24,
+  "layer": "bottom",
+  "modules-center": [
+    "clock"
+  ],
+  "modules-left": [
+    "hyprland/workspaces",
+    "hyprland/mode"
+  ],
+  "modules-right": [
+    "tray",
+		"custom/arrow1",
+    "pulseaudio",
+		"custom/arrow2",
+    "network",
+		"custom/arrow3",
+    "battery"
+  ],
+	"custom/arrow1": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow1": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow2": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow3": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow4": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow5": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow6": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow7": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow10": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow11": {
+		"format": "",
+		"tooltip": false
+	},
+  "network": {
+    "format": "{ifname}",
+    "format-disconnected": "",
+    "format-ethernet": "{ifname} ",
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "max-length": 50,
+    "on-click": "hyprctl dispatch exec \"[float; move 100%- 40px ] nm-connection-editor\"",
+    "tooltip-format": "{ifname}",
+    "tooltip-format-disconnected": "Disconnected",
+    "tooltip-format-ethernet": "{ifname} ",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) "
+  },
+  "position": "top",
+  "spacing": 0
+}

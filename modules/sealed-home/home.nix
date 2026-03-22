@@ -2,8 +2,8 @@
 
 let
 	sealed = config.sealed;
-	isLinux = pkgs.stdenv.hostPlatform == "x86_64-linux";
-	isDarwin = pkgs.stdenv.hostPlatform == "aarch64-darwin";
+	isLinux = pkgs.stdenv.hostPlatform.system == "x86_64-linux";
+	isDarwin = pkgs.stdenv.hostPlatform.system == "aarch64-darwin";
 	homeDir = mkMerge [
 		(mkIf isLinux "/home/${sealed.username}")
 		(mkIf isDarwin "/Users/${sealed.username}")
@@ -31,6 +31,7 @@ in
 			tmux
 			git-lfs
 			zed-editor
+			zsh-powerlevel10k
 		]
 		sealed.customPackages
 	];
@@ -52,7 +53,14 @@ in
 		};
 	};
 
-	programs.zsh.enable = true;
+	programs.zsh = {
+		enable = true;
+		dotDir = ".config/zsh";
+		initContent = """
+		source ${pkgs/zsh-powelevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+		""";
+	};
+
 	programs.wezterm.enable = true;
 
 	xdg.configFile."wezterm/wezterm.lua".source = ../../config/wezterm/wezterm.lua;
