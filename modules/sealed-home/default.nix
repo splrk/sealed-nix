@@ -64,6 +64,7 @@ in
 						zsh-fast-syntax-highlighting
 						zsh-autosuggestions
 						zsh-completions
+						zsh-history-substring-search
 						blueman
 						] ++
 						userCfg.customPackages;
@@ -78,6 +79,11 @@ in
 						source ${configDir}/zsh/.pl10.zsh
 						source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 						source ${pkgs.zsh-autosuggestions}/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+						source ${pkgs.zsh-history-substring-search}/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+						export HISTORY_SUBSTRING_SEARCH_PREFIXED=1
+						bindkey "$terminfo[kcuu1]" history-substring-search-up
+						bindkey "$terminfo[kcud1]" history-substring-search-down
+
 						fpath=(${pkgs.zsh-completions}/share/zsh/site-functions $fpath)
 						'';
 					};
