@@ -65,7 +65,6 @@ in
 						zsh-autosuggestions
 						zsh-completions
 						zsh-history-substring-search
-						blueman
 						] ++
 						userCfg.customPackages;
 

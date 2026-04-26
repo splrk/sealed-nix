@@ -24,6 +24,7 @@
 @define-color sound @cyan;
 @define-color network @purple;
 @define-color battery @bg1;
+@define-color bluetooth @blue;
 
 window#waybar {
     background-color: @bg0;
@@ -47,7 +48,7 @@ window#waybar {
 
 #custom-arrow1 {
 	background-color: @bg0;
-	color: @cyan;
+	color: @sound;
 }
 
 #custom-arrow2 {
@@ -57,6 +58,11 @@ window#waybar {
 
 #custom-arrow3 {
 	background-color: @network;
+	color: @bluetooth;
+}
+
+#custom-arrow4 {
+	background-color: @bluetooth;
 	color: @battery;
 }
 
@@ -116,6 +122,7 @@ window#waybar {
 #mode,
 #idle_inhibitor,
 #scratchpad,
+#bluetooth,
 #mpd {
     padding: 0 12px;
     background-color: transparent;
@@ -156,6 +163,10 @@ window#waybar {
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
+}
+
+#bluetooth {
+	background-color: @bluetooth;
 }
 
 @keyframes blink {

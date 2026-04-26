@@ -29,6 +29,8 @@ in
 				noto-fonts
 				nerd-fonts.symbols-only
 			];
+
+			hardware.bluetooth.enable = true;
 		};
 
 		homeManagerConfig = lib.mapAttrs (name: cfg: {
@@ -40,6 +42,7 @@ in
 				pkgs.networkmanagerapplet
 				pkgs.hyprlock
 				pkgs.hypridle
+				pkgs.blueman
 			];
 
 			services.vicinae = {

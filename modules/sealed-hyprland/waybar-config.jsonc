@@ -30,6 +30,15 @@
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
 		"interval": 1
   },
+	"bluetooth": {
+		"format-no-controller": "X",
+		"format": "status",
+		"format-on": "󰂯",
+		"format-off": "󰂲",
+		"format-disabled": "-",
+		"tooltip-format-connected": "{device_enumerate}",
+		"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+	},
   "height": 24,
   "layer": "bottom",
   "modules-center": [
@@ -46,6 +55,8 @@
 		"custom/arrow2",
     "network",
 		"custom/arrow3",
+		"bluetooth",
+		"custom/arrow4",
     "battery"
   ],
 	"custom/arrow1": {

@@ -195,7 +195,7 @@ in
 				);
 			});
 		})) usersCfg;
-	in lib.mkIf globalDesktopEnabled (systemConfig// {
+	in lib.mkIf globalDesktopEnabled (lib.recursiveUpdate systemConfig {
 		home-manager.users = lib.mapAttrs (name: value: value) homeManagerConfig;
 	});
 }
